@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "uda-mobile",
+    "slug": "uda-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "uda-mobile"
+}
