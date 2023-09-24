@@ -1,11 +1,11 @@
 {
-  "name": "uda-mobile-project",
+  "name": "uda-mobile",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -16,7 +16,12 @@
     "react-native": "0.72.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@tsconfig/react-native": "^3.0.2",
+    "@types/jest": "^29.5.4",
+    "@types/react": "^18.2.21",
+    "@types/react-test-renderer": "^18.0.0",
+    "typescript": "^5.2.2"
   },
   "private": true
 }
