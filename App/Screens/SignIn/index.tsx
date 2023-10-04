@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import { SafeAreaView } from "react-native";
 import styled from "styled-components/native";
 
 const Container = styled.View`
@@ -8,51 +9,87 @@ const Container = styled.View`
   background-color: #0ABAB5;
 `;
 
-const UdaLogo = styled.Image``;
+const UdaLogo = styled.Image`
+  margin-bottom : 20px;
+`;
+
+const FormContainer = styled.View`
+  background-color: white;
+  width: 70%;
+  height: 40%;
+  border-radius: 30px;
+  align-items: center;
+  justify-content: flex-end;
+  padding : 50px 30px;
+`;
+
+const InputContainer = styled.View`
+  margin-top: 20px;
+  flex-direction: row;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-color: #B9B9B9;
+  width: 100%;
+  height: 50px;
+`
+
+const TextInput = styled.TextInput`
+  width: 80%;
+  margin-left: 10px;
+  font-size: 18px;
+  
+`;
+
+const Icon = styled.Image``;
+
+const LogInBtn = styled.TouchableOpacity`
+  margin-top: 60px;
+  background-color: #0ABAB5;
+  border-radius: 5px;
+  width: 130px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LogInBtnText = styled.Text`
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'MICEGothic';
+`;
+
 
 
 const SignIn = () => {
+    const a = useRef(null);
+
     return (
         <Container>
           <UdaLogo source={require('../../assets/_Logo.png')}/>
-
+          <FormContainer>
+            <InputContainer>
+              <Icon source={require('../../assets/icon_ID.png')}/>
+              <TextInput 
+              selectionColor={'#0ABAB5'}
+                returnKeyType="next"
+              />
+            </InputContainer>
+            <InputContainer>
+              <Icon source={require('../../assets/icon_password.png')}/>
+              <TextInput 
+              selectionColor={'#0ABAB5'}
+                secureTextEntry
+                placeholder="Password"
+                returnKeyType="done"
+              />
+            </InputContainer>
+            <LogInBtn>
+              <LogInBtnText>로그인</LogInBtnText>
+            </LogInBtn>
+          </FormContainer>
         </Container>
     )
 }
 
-export default SignIn
-
-{/* <View style={styles.header}>
-        <Image source={require('../assets/_Logo.png')} />
-      </View>
-
-      <View style={styles.body}>
-        <View style={styles.cardDialogContainer}>
-          <View style={{borderStyle:"solid", borderBottomWidth: 2, marginHorizontal: 20, height: 50}}></View>
-          <View style={{borderStyle:"solid", borderBottomWidth: 2, marginHorizontal: 20, height: 50}}></View>
-        </View>
-      </View> */}
-
-      // const styles = StyleSheet.create({
-      //   container: {
-      //     flex: 1,
-      //     backgroundColor: '#0ABAB5',
-      //     alignItems: 'center',
-      //     justifyContent: 'center',
-      //   },
-      //   header: {flex: 1, justifyContent: "center"},
-      //   body: { 
-      //     flex: 2,
-      //     justifyContent: "flex-start",
-      //     alignItems: "center",
-      //     width: "100%"
-      //   },
-      //   cardDialogContainer: {
-      //     backgroundColor: "white",
-      //     height: "60%",
-      //     width: "75%",
-      //     borderRadius: 20,
-      //     justifyContent: "center"
-      //   }
-        
-      // });
+export default SignIn;

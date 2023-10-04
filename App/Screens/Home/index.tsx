@@ -5,7 +5,6 @@ const Container = styled.View``;
 
 const Text = styled.Text``;
 
-
 const Home = () => {
     return (
         <Container>
