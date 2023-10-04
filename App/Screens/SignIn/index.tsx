@@ -55,14 +55,16 @@ const LogInBtn = styled.TouchableOpacity`
 const LogInBtnText = styled.Text`
   color: white;
   font-size: 20px;
-  font-weight: 600;
-  font-family: 'MICEGothic';
+  font-family: 'MICEGothicBold';
+  letter-spacing: 3px;
 `;
 
-
-
 const SignIn = () => {
-    const a = useRef(null);
+    const passwordInput: any = useRef(null);
+
+    const jumpToPassword = () => {
+      passwordInput.current.focus();
+    }
 
     return (
         <Container>
@@ -71,14 +73,16 @@ const SignIn = () => {
             <InputContainer>
               <Icon source={require('../../assets/icon_ID.png')}/>
               <TextInput 
-              selectionColor={'#0ABAB5'}
+                selectionColor={'#0ABAB5'}
                 returnKeyType="next"
+                onSubmitEditing={jumpToPassword}
               />
             </InputContainer>
             <InputContainer>
               <Icon source={require('../../assets/icon_password.png')}/>
               <TextInput 
-              selectionColor={'#0ABAB5'}
+                ref={passwordInput}
+                selectionColor={'#0ABAB5'}
                 secureTextEntry
                 placeholder="Password"
                 returnKeyType="done"
