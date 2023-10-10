@@ -1,13 +1,19 @@
 import React, { useRef } from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import styled from "styled-components/native";
 
-const Container = styled.View`
+const Container = styled.SafeAreaView`
   justify-content: center;
   align-items: center;
   flex: 1;
   background-color: #0ABAB5;
 `;
+
+const Header = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`
 
 const UdaLogo = styled.Image`
   margin-bottom : 20px;
@@ -16,7 +22,7 @@ const UdaLogo = styled.Image`
 const FormContainer = styled.View`
   background-color: white;
   width: 70%;
-  height: 40%;
+  height: 50%;
   border-radius: 30px;
   align-items: center;
   justify-content: flex-end;
@@ -36,8 +42,8 @@ const InputContainer = styled.View`
 const TextInput = styled.TextInput`
   width: 80%;
   margin-left: 10px;
-  font-size: 18px;
-  
+  font-size: 15px;
+  font-family: 'MICEGothicBold';
 `;
 
 const Icon = styled.Image``;
@@ -59,6 +65,28 @@ const LogInBtnText = styled.Text`
   letter-spacing: 3px;
 `;
 
+const FooterText = styled.Text`
+  font-size: 17px;
+  font-family: 'MICEGothicBold';
+  color: white;
+  padding-right: 5px;
+`;
+
+const SignInBtn = styled.TouchableOpacity`
+
+`;
+
+const SignInText = styled.Text`
+  font-size: 17px;
+  font-family: 'MICEGothicBold';
+  color: black;
+`;
+const Footer = styled.View`
+  flex-direction: row;
+  align-items: flex-end;
+  flex: 1;
+`;
+
 const SignIn = () => {
     const passwordInput: any = useRef(null);
 
@@ -68,7 +96,10 @@ const SignIn = () => {
 
     return (
         <Container>
-          <UdaLogo source={require('../../assets/_Logo.png')}/>
+          <Header>
+            <UdaLogo source={require('../../assets/_Logo.png')}/>
+          </Header>
+          
           <FormContainer>
             <InputContainer>
               <Icon source={require('../../assets/icon_ID.png')}/>
@@ -92,6 +123,18 @@ const SignIn = () => {
               <LogInBtnText>로그인</LogInBtnText>
             </LogInBtn>
           </FormContainer>
+
+          <Footer>
+            <FooterText>
+              우다가 처음이신가요?
+            </FooterText>
+            <SignInBtn>
+              <SignInText>회원가입</SignInText>
+            </SignInBtn>
+            
+
+          </Footer>
+          
         </Container>
     )
 }
