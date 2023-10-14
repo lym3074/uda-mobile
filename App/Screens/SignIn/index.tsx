@@ -48,7 +48,7 @@ const TextInput = styled.TextInput`
 const Icon = styled.Image``;
 
 const LogInBtn = styled.TouchableOpacity`
-  margin-top: 60px;
+  margin-top: 50px;
   background-color: #0ABAB5;
   border-radius: 5px;
   width: 130px;
@@ -108,26 +108,29 @@ const SignIn = ({navigation: {navigate}}: any) => {
 
   const [mode, setMode] = useState(false);
 
-    return (
-        <Container>
-          <Header>
-            <UdaLogo source={require('../../assets/_Logo.png')}/>
-          </Header>
-          {/* <LoginForm /> */}
-          <MobileAuthForm />
-          <Footer>
-            <FooterText>
-              우다가 처음이신가요?
-            </FooterText>
-            <SignInBtn onPress={() => navigate('SignUp')}>
-              <SignInText>회원가입</SignInText>
-            </SignInBtn>
-          </Footer>
-        </Container>
-    )
+  return (
+      <Container>
+        <Header>
+          <UdaLogo source={require('../../assets/_Logo.png')}/>
+        </Header>
+        {mode 
+        ?<MobileAuthForm setMode={setMode} />
+        :<LoginForm setMode={setMode}/>}
+        
+        <Footer>
+          <FooterText>
+            우다가 처음이신가요?
+          </FooterText>
+          <SignInBtn onPress={() => navigate('SignUp')}>
+            <SignInText>회원가입</SignInText>
+          </SignInBtn>
+        </Footer>
+      </Container>
+  )
 }
 
-const MobileAuthForm = () => {
+const MobileAuthForm = (props: any) => {
+  const {setMode} = props;
   const [displayAuth, setDisplayAuth] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
 
@@ -141,6 +144,7 @@ const MobileAuthForm = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setDisplayAuth(false)
     setIsSubmit(false);
+    setMode(false);
   }
 
   return (
@@ -175,7 +179,8 @@ const MobileAuthForm = () => {
   )
 }
 
-const LoginForm = () => {
+const LoginForm = (props: any) => {
+  const {setMode} = props;
   const passwordInput: any = useRef(null);
     const position = useRef(new Animated.Value(0)).current;
 
@@ -186,7 +191,12 @@ const LoginForm = () => {
     });
 
     const showPhoneAuthForm = () => {
-      goLeft.start();
+      goLeft.start()
+      setTimeout(() => {
+        LayoutAnimation.easeInEaseOut();
+        setMode(true)
+      }, 200)
+      
     }
 
     const jumpToPassword = () => {
@@ -194,7 +204,7 @@ const LoginForm = () => {
     }
   return (
     <FormContainer style={{transform:[{translateX: position}]}}>
-      <InputContainer>
+      <InputContainer topSpace={100}>
         <Icon source={require('../../assets/icon_ID.png')}/>
         <TextInput 
           selectionColor={'#0ABAB5'}
@@ -202,7 +212,7 @@ const LoginForm = () => {
           onSubmitEditing={jumpToPassword}
         />
       </InputContainer>
-      <InputContainer>
+      <InputContainer topSpace={10}>
         <Icon source={require('../../assets/icon_password.png')}/>
         <TextInput 
           ref={passwordInput}
