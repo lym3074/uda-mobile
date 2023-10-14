@@ -11,7 +11,6 @@ const MainNavigation = () => {
             <Navigation.Screen name={"Home"} component={Home} />
         </Navigation.Navigator>
     )
-    
 }
 
 export default MainNavigation;

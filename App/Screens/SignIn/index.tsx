@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
-import { SafeAreaView, View } from "react-native";
+import { Animated, SafeAreaView, View } from "react-native";
 import styled from "styled-components/native";
+import * as style from "./style"
+import CommonAnimations from "../../Animations/Common";
 
 const Container = styled.SafeAreaView`
   justify-content: center;
@@ -19,10 +21,9 @@ const UdaLogo = styled.Image`
   margin-bottom : 20px;
 `;
 
-const FormContainer = styled.View`
+const FormContainer = styled(Animated.createAnimatedComponent(View))`
   background-color: white;
   width: 70%;
-  height: 50%;
   border-radius: 30px;
   align-items: center;
   justify-content: flex-end;
@@ -66,10 +67,11 @@ const LogInBtnText = styled.Text`
 `;
 
 const FooterText = styled.Text`
-  font-size: 17px;
+  font-size: 16px;
   font-family: 'MICEGothicBold';
   color: white;
   padding-right: 5px;
+  letter-spacing: 1.2px;
 `;
 
 const SignInBtn = styled.TouchableOpacity`
@@ -77,18 +79,40 @@ const SignInBtn = styled.TouchableOpacity`
 `;
 
 const SignInText = styled.Text`
-  font-size: 17px;
+  font-size: 16px;
   font-family: 'MICEGothicBold';
-  color: black;
+  color: #335E5C;
+  letter-spacing: 1.2px;
 `;
+
 const Footer = styled.View`
   flex-direction: row;
   align-items: flex-end;
   flex: 1;
+  margin-bottom: 10px;
 `;
 
-const SignIn = () => {
+const SignIn = ({navigation: {navigate}}: any) => {
     const passwordInput: any = useRef(null);
+    // const {goLeft} = CommonAnimations();
+
+    const position = useRef(new Animated.Value(0)).current;
+
+    const goLeft = Animated.spring(position, {
+        toValue: -500,
+        useNativeDriver: true, 
+        tension: 5,
+        restSpeedThreshold: 100, // 속도 임계값
+        restDisplacementThreshold: 100 // 거리 임계값
+    });
+
+    position.addListener(e => {
+      console.log(e);
+    })
+
+    const showPhoneAuthForm = () => {
+      goLeft.start();
+    }
 
     const jumpToPassword = () => {
       passwordInput.current.focus();
@@ -100,7 +124,7 @@ const SignIn = () => {
             <UdaLogo source={require('../../assets/_Logo.png')}/>
           </Header>
           
-          <FormContainer>
+          <FormContainer style={{transform:[{translateX: position}]}}>
             <InputContainer>
               <Icon source={require('../../assets/icon_ID.png')}/>
               <TextInput 
@@ -119,8 +143,8 @@ const SignIn = () => {
                 returnKeyType="done"
               />
             </InputContainer>
-            <LogInBtn>
-              <LogInBtnText>로그인</LogInBtnText>
+            <LogInBtn onPress={showPhoneAuthForm}>
+              <LogInBtnText >로그인</LogInBtnText>
             </LogInBtn>
           </FormContainer>
 
@@ -128,11 +152,9 @@ const SignIn = () => {
             <FooterText>
               우다가 처음이신가요?
             </FooterText>
-            <SignInBtn>
+            <SignInBtn onPress={() => navigate('SignUp')}>
               <SignInText>회원가입</SignInText>
             </SignInBtn>
-            
-
           </Footer>
           
         </Container>
