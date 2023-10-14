@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { Animated, View } from "react-native";
+import React, { useRef, useState } from "react";
+import { Animated, LayoutAnimation, View } from "react-native";
 import styled from "styled-components/native";
 
 const Container = styled.SafeAreaView`
@@ -21,17 +21,17 @@ const UdaLogo = styled.Image`
 
 const FormContainer = styled(Animated.createAnimatedComponent(View))`
   background-color: white;
-  width: 70%;
+  width: 300px;
   border-radius: 20px;
   align-items: center;
   justify-content: flex-end;
   padding : 25px 30px;
 `;
 
-const InputContainer = styled.View`
+const InputContainer: any = styled.View`
+  margin-top: ${(props: any) => props.topSpace};
   flex-direction: row;
   align-items: center;
-  
   border-bottom-width: 1px;
   border-color: #B9B9B9;
   width: 100%;
@@ -39,7 +39,7 @@ const InputContainer = styled.View`
 `
 
 const TextInput = styled.TextInput`
-  width: 150px;
+  width: 60%;
   margin: 0px 10px;
   font-size: 15px;
   font-family: 'MICEGothicBold';
@@ -68,7 +68,14 @@ const BtnText = styled.Text`
   color: white;
   font-size: 17px;
   font-family: 'MICEGothicBold';
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+`;
+
+const AuthCntText = styled.Text`
+  color: grey;
+  font-size: 17px;
+  font-family: 'MICEGothicBold';
+  letter-spacing: 2px;
 `;
 
 const FooterText = styled.Text`
@@ -99,6 +106,8 @@ const Footer = styled.View`
 
 const SignIn = ({navigation: {navigate}}: any) => {
 
+  const [mode, setMode] = useState(false);
+
     return (
         <Container>
           <Header>
@@ -119,18 +128,49 @@ const SignIn = ({navigation: {navigate}}: any) => {
 }
 
 const MobileAuthForm = () => {
+  const [displayAuth, setDisplayAuth] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const sendPhoneNumber = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setDisplayAuth(true)
+    setIsSubmit(true);
+  }
+
+  const sendAuthNumber = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setDisplayAuth(false)
+    setIsSubmit(false);
+  }
+
   return (
     <FormContainer>
       <InputContainer>
-          <Icon source={require('../../assets/icon_phone.png')}/>
-          <TextInput 
-            selectionColor={'#0ABAB5'}
-            returnKeyType="next"
-          />
-          <SendBtn >
-            <BtnText >전송</BtnText>
+        <Icon source={require('../../assets/icon_phone.png')}/>
+        <TextInput 
+          selectionColor={'#0ABAB5'}
+          returnKeyType="next"
+        />
+        {isSubmit
+        ? <AuthCntText>3:00</AuthCntText>
+        : <SendBtn onPress={sendPhoneNumber}>
+            <BtnText>전송</BtnText>
           </SendBtn>
-        </InputContainer>
+        }
+        
+      </InputContainer>
+      {displayAuth && (
+        <InputContainer topSpace={20}>
+        <Icon source={require('../../assets/icon_lock.png')}/>
+        <TextInput 
+          selectionColor={'#0ABAB5'}
+          returnKeyType="next"
+        />
+        <SendBtn onPress={sendAuthNumber}>
+          <BtnText>인증</BtnText>
+        </SendBtn>
+      </InputContainer>
+      )}
     </FormContainer>
   )
 }
