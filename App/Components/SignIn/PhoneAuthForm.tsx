@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { InputContainer, TextInput, Icon, BtnText, AuthCntText, SendBtn} from "./style";
+import { PhoneIcon, LockIcon } from "../../assets/images";
 
 const PhoneAuthForm = (props: any) => {
     const {setMode} = props;
@@ -23,7 +24,7 @@ const PhoneAuthForm = (props: any) => {
     return (
         <>
             <InputContainer>
-                <Icon source={require('../../assets/icon_phone.png')}/>
+                <Icon source={PhoneIcon}/>
                 <TextInput 
                 selectionColor={'#0ABAB5'}
                 returnKeyType="next"
@@ -38,7 +39,7 @@ const PhoneAuthForm = (props: any) => {
             </InputContainer>
             {displayAuth && (
                 <InputContainer topSpace={20}>
-                <Icon source={require('../../assets/icon_lock.png')}/>
+                <Icon source={LockIcon}/>
                 <TextInput 
                 selectionColor={'#0ABAB5'}
                 returnKeyType="next"

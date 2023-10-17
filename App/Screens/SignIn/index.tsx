@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react";
 import { Animated, LayoutAnimation, View } from "react-native";
 import styled from "styled-components/native";
 import { Container, Header, UdaLogo, FormContainer, InputContainer, TextInput, Icon, LogInBtn, SendBtn, BtnText, AuthCntText, FooterText, SignInBtn, SignInText, Footer } from "./style";
+import { WriteIcon, MainLogo } from "../../assets/images";
 
-import { LoginForm, PhoneAuthForm } from "../../Components/SignIn";
+import { LoginForm, PhoneAuthForm, SignUpForm } from "../../Components/SignIn";
 interface SignMode {
   login: boolean,
   mobileAuth: boolean,
@@ -22,12 +23,13 @@ const SignIn = ({navigation: {navigate}}: any) => {
   return (
       <Container>
         <Header>
-          <UdaLogo source={require('../../assets/_Logo.png')}/>
+          <UdaLogo source={MainLogo}/>
         </Header>
         <FormContainer>
-          {mode.login && <LoginForm setMode={setMode} />}
+          {/* {mode.login && <LoginForm setMode={setMode} />}
           {mode.mobileAuth && <PhoneAuthForm setMode={setMode} />}
-          {mode.signUp && <PhoneAuthForm setMode={setMode} />}
+          {mode.signUp && <PhoneAuthForm setMode={setMode} />} */}
+          <SignUpForm />
         </FormContainer>
         
         <Footer>

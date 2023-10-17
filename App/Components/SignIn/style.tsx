@@ -1,32 +1,6 @@
 import { Animated, View } from "react-native";
 import styled from "styled-components/native";
 
-export const Container = styled.SafeAreaView`
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  background-color: #0ABAB5;
-`;
-
-export const Header = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-`
-
-export const UdaLogo = styled.Image`
-  margin-bottom : 20px;
-`;
-
-export const FormContainer = styled(Animated.createAnimatedComponent(View))`
-  background-color: white;
-  width: 300px;
-  border-radius: 20px;
-  align-items: center;
-  justify-content: flex-end;
-  padding : 25px 30px;
-`;
-
 export const InputContainer: any = styled.View`
   margin-top: ${(props: any) => props.topSpace};
   flex-direction: row;
@@ -48,12 +22,11 @@ export const TextInput = styled.TextInput`
 export const Icon = styled.Image``;
 
 export const LogInBtn = styled.TouchableOpacity`
-  margin-top: 50px;
   background-color: #0ABAB5;
   border-radius: 5px;
-  width: 130px;
-  height: 40px;
   justify-content: center;
+  margin-top: 50px;
+  padding: 5px 30px;
   align-items: center;
   margin-bottom: 50px;
 `;

@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
 import { InputContainer, TextInput, Icon, LogInBtn, BtnText} from "./style";
+import { WriteIcon, PwIcon } from "../../assets/images";
 
-import { IdIcon, PwIcon } from "../../assets/images";
-
-const LoginForm = (props: any) => {
+const SignUpForm = (props: any) => {
   const {setMode} = props;
   const passwordInput: any = useRef(null);
 
@@ -21,8 +20,8 @@ const LoginForm = (props: any) => {
   return (
     <>
       <InputContainer topSpace={100}>
-          <Icon source={IdIcon}/>
-          <TextInput 
+          <Icon source={WriteIcon}/>
+          <TextInput
             selectionColor={'#0ABAB5'}
             returnKeyType="next"
             onSubmitEditing={jumpToPassword}
@@ -45,4 +44,4 @@ const LoginForm = (props: any) => {
   )
 }
 
-export default LoginForm;
+export default SignUpForm;
