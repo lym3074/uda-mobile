@@ -5,7 +5,7 @@ export const Container = styled.SafeAreaView`
   justify-content: center;
   align-items: center;
   flex: 1;
-  background-color: #0ABAB5;
+  background-color: rgb(10, 186, 181);
 `;
 
 export const Header = styled.View`
@@ -20,6 +20,7 @@ export const UdaLogo = styled.Image`
 
 export const FormContainer = styled(Animated.createAnimatedComponent(View))`
   background-color: white;
+  opacity: 0.69;
   width: 300px;
   border-radius: 20px;
   align-items: center;
@@ -62,7 +63,6 @@ export const SendBtn = styled.TouchableOpacity`
   background-color: #0ABAB5;
   border-radius: 5px;
   padding: 5px 10px;
-  margin-right: 100;
 `;
 
 export const BtnText = styled.Text`
@@ -103,3 +103,14 @@ export const Footer = styled.View`
   flex: 1;
   margin-bottom: 10px;
 `;
+
+export const InviteText = styled.Text`
+  font-size: 18px;
+  font-family: 'MICEGothicBold';
+  color: #000;
+  letter-spacing: 1.2px;
+  text-align: center;
+  line-height: 30;
+  margin-bottom: 20;
+`;
+

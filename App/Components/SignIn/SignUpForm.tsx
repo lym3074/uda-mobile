@@ -3,12 +3,18 @@ import { InputContainer, TextInput, Icon, LogInBtn, BtnText, ProfileWrapper} fro
 import { WriteIcon, PwIcon, EmailIcon, CalendarIcon, EmptyProfile } from "../../assets/images";
 
 const SignUpForm = (props: any) => {
+  const {setMode} = props;
   const passwordInput: any = useRef(null);
   const bDateInput: any = useRef(null);
   const emailInput: any = useRef(null);
 
   const submitSignUpInfo = () => {
     console.log("회원 가입이 성공하였습니다.");
+    setMode((prev: any) => ({
+      ...prev,
+      login: true,
+      signUp: false
+    }))
   };
 
   const jumpToNextInput = (nextRef: any) => {

@@ -1,24 +1,34 @@
-import React, { useRef, useState } from "react";
-import { Animated, LayoutAnimation, View } from "react-native";
-import styled from "styled-components/native";
-import { Container, Header, UdaLogo, FormContainer, InputContainer, TextInput, Icon, LogInBtn, SendBtn, BtnText, AuthCntText, FooterText, SignInBtn, SignInText, Footer } from "./style";
-import { WriteIcon, MainLogo } from "../../assets/images";
+import React, { useState} from "react";
+import { Container, Header, UdaLogo, FormContainer, FooterText, SignInBtn, SignInText, Footer } from "./style";
+import { MainLogo } from "../../assets/images";
+import { InviteForm, LoginForm, PhoneAuthForm, SignUpForm } from "../../Components/SignIn";
 
-import { LoginForm, PhoneAuthForm, SignUpForm } from "../../Components/SignIn";
 interface SignMode {
   login: boolean,
   mobileAuth: boolean,
-  signUp: boolean
+  signUp: boolean,
+  invite: boolean
 }
 
 const initSignMode = {
-  login: true,
+  login: false,
   mobileAuth: false,
-  signUp: false
+  signUp: false,
+  invite: true
 }
 
 const SignIn = ({navigation: {navigate}}: any) => {
   const [mode, setMode] = useState<SignMode>(initSignMode);
+
+  const goToSignUpForm = () => {
+    setMode((prev) => (
+      {
+        ...prev,
+        login: false,
+        signUp: true
+      }
+    ))
+  }
 
   return (
       <Container>
@@ -26,17 +36,16 @@ const SignIn = ({navigation: {navigate}}: any) => {
           <UdaLogo source={MainLogo}/>
         </Header>
         <FormContainer>
-          {/* {mode.login && <LoginForm setMode={setMode} />}
+          {mode.login && <LoginForm setMode={setMode} />}
           {mode.mobileAuth && <PhoneAuthForm setMode={setMode} />}
-          {mode.signUp && <PhoneAuthForm setMode={setMode} />} */}
-          <SignUpForm />
+          {mode.signUp && <SignUpForm setMode={setMode} />}
+          {mode.invite && <InviteForm />}
         </FormContainer>
-        
         <Footer>
           <FooterText>
             우다가 처음이신가요?
           </FooterText>
-          <SignInBtn>
+          <SignInBtn onPress={goToSignUpForm}>
             <SignInText>회원가입</SignInText>
           </SignInBtn>
         </Footer>
