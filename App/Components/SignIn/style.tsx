@@ -76,3 +76,7 @@ export const Footer = styled.View`
   flex: 1;
   margin-bottom: 10px;
 `;
+
+export const ProfileWrapper = styled.TouchableOpacity`
+  padding: 30px 0px;
+`
