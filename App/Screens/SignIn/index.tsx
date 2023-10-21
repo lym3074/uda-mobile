@@ -26,9 +26,8 @@ const SignIn = ({navigation: {navigate}}: any) => {
         ...prev,
         login: false,
         signUp: true
-      }
-    ))
-  }
+      }))
+  };
 
   return (
       <Container>

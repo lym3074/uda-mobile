@@ -6,5 +6,6 @@ export {default as PhoneIcon} from './icons/icon_phone.png';
 export {default as LockIcon} from './icons/icon_lock.png';
 export {default as CalendarIcon} from './icons/icon_calendar.png';
 export {default as EmptyProfile} from './icons/icon_empty_profile.png';
+export {default as LoadingIcon} from './icons/loading_logo.png';
 
 export {default as MainLogo} from './uda-logo.png';

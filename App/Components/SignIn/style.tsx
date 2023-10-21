@@ -10,7 +10,7 @@ export const InputContainer: any = styled.View`
   border-color: #B9B9B9;
   width: 100%;
   height: 50px;
-`
+`;
 
 export const TextInput = styled.TextInput`
   width: 60%;
@@ -79,4 +79,12 @@ export const Footer = styled.View`
 
 export const ProfileWrapper = styled.TouchableOpacity`
   padding: 30px 0px;
-`
+`;
+
+export const PhoneInputContainer = styled.View`
+  background-color: black;
+  flex-direction: row;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+`;
