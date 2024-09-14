@@ -24,8 +24,8 @@ const SignIn = ({navigation: {navigate}}: any) => {
     setMode((prev) => (
       {
         ...prev,
-        login: false,
-        signUp: true
+        login: true,
+        signUp: false
       }))
   };
 

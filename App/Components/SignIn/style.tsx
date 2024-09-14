@@ -88,3 +88,9 @@ export const PhoneInputContainer = styled.View`
   border-radius: 10px;
   margin-bottom: 20px;
 `;
+
+export const LoadingMiniText = styled.Text`
+  font-size: 12px;
+  font-family: 'MICEGothicBold';
+  letter-spacing: 1px;
+`
